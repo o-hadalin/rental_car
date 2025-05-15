@@ -5,6 +5,12 @@ import {
   selectHasMore,
   selectIsLoading,
 } from '../../redux/cars/selectors';
+import {
+  selectBrand,
+  selectPrice,
+  selectMileageFrom,
+  selectMileageTo,
+} from '../../redux/filters/selectors';
 
 const LoadMoreButton = () => {
   const dispatch = useDispatch();
@@ -12,9 +18,23 @@ const LoadMoreButton = () => {
   const hasMore = useSelector(selectHasMore);
   const isLoading = useSelector(selectIsLoading);
 
+  const brand = useSelector(selectBrand);
+  const rentalPrice = useSelector(selectPrice);
+  const minMileage = useSelector(selectMileageFrom);
+  const maxMileage = useSelector(selectMileageTo);
+
   const handleClick = () => {
     if (hasMore && !isLoading) {
-      dispatch(fetchCars({ page: page + 1 }));
+      dispatch(
+        fetchCars({
+          page: page + 1,
+          limit: 12,
+          brand,
+          rentalPrice,
+          minMileage,
+          maxMileage,
+        })
+      );
     }
   };
 
