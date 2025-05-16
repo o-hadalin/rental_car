@@ -32,6 +32,7 @@ const Filters = () => {
   const [brandsList, setBrandsList] = useState([]);
   const [pricesList, setPricesList] = useState([]);
   const [initDone, setInitDone] = useState(false); // щоб не запускати fetchCars раніше часу
+  const [autoFilterNeeded, setAutoFilterNeeded] = useState(false);
 
   // Завантаження брендів
   useEffect(() => {
@@ -63,7 +64,7 @@ const Filters = () => {
     const paramsMileageTo = searchParams.get('maxMileage') || '';
 
     if (paramsBrand || paramsPrice || paramsMileageFrom || paramsMileageTo) {
-      // Якщо є параметри у URL, ставимо їх у Redux
+      setAutoFilterNeeded(true);
       dispatch(setBrand(paramsBrand));
       dispatch(setPrice(paramsPrice));
       dispatch(setMileageFrom(paramsMileageFrom));
@@ -86,9 +87,9 @@ const Filters = () => {
     setInitDone(true);
   }, [dispatch, searchParams]);
 
-  // Після відновлення фільтрів запускаємо пошук
+  // Після відновлення фільтрів запускаємо пошук автоматично разово
   useEffect(() => {
-    if (!initDone) return;
+    if (!initDone || !autoFilterNeeded) return;
     dispatch(resetCars());
     dispatch(
       fetchCars({
@@ -100,6 +101,7 @@ const Filters = () => {
         maxMileage: mileageTo,
       })
     );
+    setAutoFilterNeeded(false);
   }, [initDone, dispatch, brand, price, mileageFrom, mileageTo]);
 
   const handleSearch = () => {
@@ -154,7 +156,7 @@ const Filters = () => {
         </select>
       </div>
       <div className={styles.filterItem}>
-        <label htmlFor="price">Price / 1 hour</label>
+        <label htmlFor="price">Price / 1 hour (up to)</label>
         <select
           id="price"
           value={price}
@@ -169,15 +171,19 @@ const Filters = () => {
         </select>
       </div>
       <div className={styles.filterItem}>
-        <label>Car mileage / km</label>
+        <label htmlFor="mileageFrom">Car mileage / km</label>
         <div className={styles.mileageInputs}>
           <input
+            id="mileageFrom"
+            name="mileageFrom"
             type="number"
             placeholder="From"
             value={mileageFrom}
             onChange={e => dispatch(setMileageFrom(e.target.value))}
           />
           <input
+            id="mileageTo"
+            name="mileageTo"
             type="number"
             placeholder="To"
             value={mileageTo}
