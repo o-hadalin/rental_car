@@ -1,7 +1,12 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavorite } from '../../redux/favorites/slice';
+import { selectFavorites } from '../../redux/favorites/selectors';
+import Icon from '../../components/Icon/Icon.jsx';
 import styles from './CarCard.module.css';
 
 const CarCard = ({ car }) => {
   const {
+    id,
     img,
     make,
     model,
@@ -13,13 +18,29 @@ const CarCard = ({ car }) => {
     mileage,
     functionalities,
   } = car;
-
   const city = address?.split(', ')[1] || '';
   const country = address?.split(', ')[2] || '';
 
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
+  const isFavorite = favorites.includes(id);
+
+  const handleToggle = () => {
+    dispatch(toggleFavorite(id));
+  };
+
   return (
     <div className={styles.card}>
-      <img className={styles.image} src={img} alt={`${make} ${model}`} />
+      <div className={styles.imageWrapper}>
+        <img className={styles.image} src={img} alt={`${make} ${model}`} />
+        <button
+          className={styles.favoriteBtn}
+          onClick={handleToggle}
+          aria-label="Toggle favorite"
+        >
+          <Icon name="heart" className={isFavorite ? styles.active : ''} />
+        </button>
+      </div>
       <div className={styles.topRow}>
         <h3 className={styles.title}>
           {make} <span>{model}</span>, {year}

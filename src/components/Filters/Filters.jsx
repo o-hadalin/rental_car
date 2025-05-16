@@ -165,7 +165,7 @@ const Filters = () => {
         </select>
       </div>
       <div className={styles.filterItem}>
-        <label htmlFor="price">Price / 1 hour (up to)</label>
+        <label htmlFor="price">Price / 1 hour</label>
         <select
           id="price"
           value={price}
