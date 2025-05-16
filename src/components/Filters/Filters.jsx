@@ -102,7 +102,15 @@ const Filters = () => {
       })
     );
     setAutoFilterNeeded(false);
-  }, [initDone, dispatch, brand, price, mileageFrom, mileageTo]);
+  }, [
+    initDone,
+    dispatch,
+    brand,
+    price,
+    mileageFrom,
+    mileageTo,
+    autoFilterNeeded,
+  ]);
 
   const handleSearch = () => {
     // Оновлюємо URL
@@ -112,6 +120,7 @@ const Filters = () => {
     if (mileageFrom) newParams.minMileage = mileageFrom;
     if (mileageTo) newParams.maxMileage = mileageTo;
     setSearchParams(newParams);
+    setAutoFilterNeeded(false);
 
     // Зберігаємо в localStorage
     localStorage.setItem(
