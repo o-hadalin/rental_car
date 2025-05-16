@@ -38,7 +38,7 @@ const CarCard = ({ car }) => {
           onClick={handleToggle}
           aria-label="Toggle favorite"
         >
-          <Icon name="heart" className={isFavorite ? styles.active : ''} />
+          <Icon name={isFavorite ? 'heart-active' : 'heart-no-active'} />
         </button>
       </div>
       <div className={styles.topRow}>

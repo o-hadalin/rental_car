@@ -68,11 +68,6 @@
 .icon {
   width: 16px;
   height: 16px;
-  fill: transparent;
-  stroke: #fff;
-  transition: fill 0.3s;
-}
-
-.active {
-  fill: #3470ff;
+  fill: currentColor;
+  transition: color 0.3s;
 }
