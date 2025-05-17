@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCars } from '../../redux/cars/operations';
+import Loader from '../Loader/Loader';
 import {
   selectPage,
   selectHasMore,
@@ -11,6 +12,7 @@ import {
   selectMileageFrom,
   selectMileageTo,
 } from '../../redux/filters/selectors';
+import styles from './LoadMoreButton.module.css';
 
 const LoadMoreButton = () => {
   const dispatch = useDispatch();
@@ -41,10 +43,12 @@ const LoadMoreButton = () => {
   if (!hasMore) return null;
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <button onClick={handleClick} disabled={isLoading}>
-        {isLoading ? 'Loading...' : 'Load more'}
-      </button>
+    <div className={styles.wrapper}>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <button onClick={handleClick}>Load more</button>
+      )}
     </div>
   );
 };

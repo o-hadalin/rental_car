@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Loader from '../../components/Loader/Loader';
 import axios from 'axios';
 import css from './DetailsPage.module.css';
 
@@ -28,7 +29,14 @@ const DetailsPage = () => {
     fetchCarDetails();
   }, [id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div
+        style={{ display: 'flex', justifyContent: 'center', padding: '80px 0' }}
+      >
+        <Loader />
+      </div>
+    );
   if (!car) return <div>Car not found</div>;
 
   return (
