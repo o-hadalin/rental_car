@@ -41,51 +41,57 @@ const BookingForm = () => {
       >
         {({ setFieldValue }) => (
           <Form className={styles.form}>
-            <div>
-              <Field
-                id="name"
-                name="name"
-                placeholder="Name*"
-                autoComplete="name"
-                className={styles.input}
-              />
-              <ErrorMessage
-                name="name"
-                component="div"
-                className={styles.error}
-              />
+            <div className={styles.inputGroup}>
+              <div className={styles.fieldWrapper}>
+                <Field
+                  id="name"
+                  name="name"
+                  placeholder="Name*"
+                  autoComplete="name"
+                  className={`${styles.input} ${styles.inputWithError}`}
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className={styles.errorInline}
+                />
+              </div>
 
-              <Field
-                id="email"
-                name="email"
-                placeholder="Email*"
-                autoComplete="email"
-                className={styles.input}
-              />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className={styles.error}
-              />
+              <div className={styles.fieldWrapper}>
+                <Field
+                  id="email"
+                  name="email"
+                  placeholder="Email*"
+                  autoComplete="email"
+                  className={`${styles.input} ${styles.inputWithError}`}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className={styles.errorInline}
+                />
+              </div>
 
-              <DatePicker
-                id="bookingDate"
-                name="date"
-                autoComplete="off"
-                selected={bookingDate}
-                onChange={date => {
-                  setBookingDate(date);
-                  setFieldValue('date', date);
-                }}
-                placeholderText="Booking date"
-                className={styles.input}
-                calendarClassName={styles.calendar}
-              />
-              <ErrorMessage
-                name="date"
-                component="div"
-                className={styles.error}
-              />
+              <div className={styles.fieldWrapper}>
+                <DatePicker
+                  id="bookingDate"
+                  name="date"
+                  autoComplete="off"
+                  selected={bookingDate}
+                  onChange={date => {
+                    setBookingDate(date);
+                    setFieldValue('date', date);
+                  }}
+                  placeholderText="Booking date"
+                  className={`${styles.input} ${styles.inputWithError}`}
+                  calendarClassName={styles.calendar}
+                />
+                <ErrorMessage
+                  name="date"
+                  component="div"
+                  className={styles.errorInline}
+                />
+              </div>
 
               <Field
                 as="textarea"

@@ -5,12 +5,12 @@
   text-align: left;
   gap: 68px;
   width: 488px;
+  padding-top: 20px;
 }
 
 .topBlock {
   display: flex;
   flex-direction: column;
-  gap: 32px;
   width: 100%;
 }
 
@@ -19,6 +19,7 @@
   font-size: 24px;
   line-height: 1.33;
   color: #101828;
+  margin-bottom: 8px;
 }
 
 .carImageId {
@@ -32,6 +33,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 16px;
 }
 
 .metaItem {
@@ -55,6 +57,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 32px;
 }
 
 .description {
@@ -62,12 +65,15 @@
   font-size: 16px;
   line-height: 1.25;
   color: #101828;
+  margin-bottom: 0;
 }
 
 .bottomBlock {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  justify-content: space-between;
+  height: 772px;
+  width: 100%;
 }
 
 .section {

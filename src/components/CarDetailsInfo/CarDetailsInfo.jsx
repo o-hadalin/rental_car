@@ -47,12 +47,7 @@ const CarDetailsInfo = ({ car }) => {
           </p>
         </div>
 
-        <p className={styles.price}>
-          <svg className={styles.icon}>
-            <use href="/sprite.svg#dollar" />
-          </svg>
-          ${rentalPrice}
-        </p>
+        <p className={styles.price}>${rentalPrice}</p>
 
         <p className={styles.description}>{description}</p>
       </div>
