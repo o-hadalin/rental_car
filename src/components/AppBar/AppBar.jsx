@@ -5,7 +5,7 @@ import logo from '../../assets/logo.svg';
 const AppBar = () => (
   <header className={styles.header}>
     <div className={styles.logo}>
-      <img src={logo} alt="RentalCar logo" />{' '}
+      <img src={logo} alt="RentalCar logo" />
     </div>
     <Navigation />
   </header>

@@ -1,0 +1,99 @@
+.wrapper {
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+  padding: 32px;
+  width: 640px;
+  height: 488px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.textBlock {
+  width: 576px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.subtitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8d929a;
+  text-align: left;
+}
+
+.form {
+  width: 576px;
+  margin-bottom: 24px;
+}
+
+.input {
+  border-radius: 12px;
+  padding: 12px 20px;
+  width: 576px;
+  height: 48px;
+  background: #f7f7f7;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8d929a;
+  margin-bottom: 16px;
+  border: none;
+  outline: none;
+}
+
+.textarea {
+  border-radius: 12px;
+  padding: 12px 20px 56px 20px;
+  width: 576px;
+  height: 88px;
+  background: #f7f7f7;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8d929a;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+.button {
+  border-radius: 12px;
+  padding: 12px 51px;
+  width: 156px;
+  height: 44px;
+  background: #3470ff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 24px;
+}
+
+.button:hover {
+  background: #0b44cd;
+}
+
+.error {
+  font-size: 12px;
+  color: red;
+  height: 10px;
+  margin: -8px 0 8px 0;
+  text-align: left;
+}
+
+.calendar {
+  width: 276px !important;
+  height: 284px !important;
+}

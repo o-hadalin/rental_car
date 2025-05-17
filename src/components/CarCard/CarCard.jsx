@@ -3,6 +3,7 @@ import { toggleFavorite } from '../../redux/favorites/slice';
 import { selectFavorites } from '../../redux/favorites/selectors';
 import Icon from '../../components/Icon/Icon.jsx';
 import styles from './CarCard.module.css';
+import { Link } from 'react-router-dom';
 
 const CarCard = ({ car }) => {
   const {
@@ -55,7 +56,9 @@ const CarCard = ({ car }) => {
         <li>{mileage.toLocaleString('en-US')} km</li>
         <li>{functionalities?.[0]}</li>
       </ul>
-      <button className={styles.detailsBtn}>Learn more</button>
+      <Link to={`/catalog/${id}`} className={styles.detailsBtn}>
+        Learn more
+      </Link>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styles from './CatalogPage.module.css';
 import Filters from '../../components/Filters/Filters.jsx';
 import CarList from '../../components/CarList/CarList.jsx';
@@ -16,22 +16,19 @@ import {
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
-  const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   useEffect(() => {
-    // Читаємо параметри фільтрів з URL
-    const brand = searchParams.get('brand') || '';
-    const price = searchParams.get('price') || '';
-    const minMileage = searchParams.get('minMileage') || '';
-    const maxMileage = searchParams.get('maxMileage') || '';
+    const params = new URLSearchParams(location.search);
+    const brand = params.get('brand') || '';
+    const price = params.get('price') || '';
+    const minMileage = params.get('minMileage') || '';
+    const maxMileage = params.get('maxMileage') || '';
 
-    // Встановлюємо фільтри в Redux
     dispatch(setBrand(brand));
     dispatch(setPrice(price));
     dispatch(setMileageFrom(minMileage));
     dispatch(setMileageTo(maxMileage));
-
-    // Скидаємо список авто та робимо запит з фільтрами
 
     dispatch(resetCars());
     dispatch(
@@ -44,7 +41,7 @@ const CatalogPage = () => {
         maxMileage,
       })
     );
-  }, [dispatch, searchParams]);
+  }, [dispatch, location.search]);
 
   return (
     <main className={styles.catalogPage}>

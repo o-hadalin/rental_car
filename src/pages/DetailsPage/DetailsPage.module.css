@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  gap: 32px;
+  padding: 84px 120px 104px;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+}
+
+.carImage {
+  border-radius: 19px;
+  width: 640px;
+  height: 512px;
+  margin-bottom: 40px;
+  object-fit: cover;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  width: 488px;
+}
