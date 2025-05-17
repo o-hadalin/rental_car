@@ -5,6 +5,7 @@ const initialState = {
   price: '',
   mileageFrom: '',
   mileageTo: '',
+  lastSearch: '',
 };
 
 const filtersSlice = createSlice({
@@ -22,6 +23,9 @@ const filtersSlice = createSlice({
     },
     setMileageTo(state, action) {
       state.mileageTo = action.payload;
+    },
+    setLastSearch: (state, action) => {
+      state.lastSearch = action.payload;
     },
     resetFilters() {
       return initialState;

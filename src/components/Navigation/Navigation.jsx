@@ -1,13 +1,11 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectLastSearch } from '../../redux/catalogState/selectors'; // 🛠 правильний шлях до селектора
 import styles from './Navigation.module.css';
 
 const Navigation = () => {
-  const location = useLocation();
-
-  // Якщо ми зараз у каталозі або деталях авто — беремо search для переходу назад з фільтрами
-  const catalogSearch = location.pathname.startsWith('/catalog')
-    ? location.search
-    : '';
+  const lastSearch = useSelector(selectLastSearch);
+  const catalogLink = lastSearch ? `/catalog${lastSearch}` : '/catalog'; // 🛠 без подвоєння `/catalog`
 
   return (
     <nav className={styles.nav}>
@@ -18,7 +16,7 @@ const Navigation = () => {
         Home
       </NavLink>
       <NavLink
-        to={`/catalog${catalogSearch}`}
+        to={catalogLink}
         className={({ isActive }) => (isActive ? styles.active : styles.link)}
       >
         Catalog

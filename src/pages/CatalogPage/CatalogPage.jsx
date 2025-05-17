@@ -13,6 +13,7 @@ import {
   setMileageFrom,
   setMileageTo,
 } from '../../redux/filters/slice';
+import { setLastSearch } from '../../redux/catalogState/slice'; // 🛠 правильний імпорт
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const CatalogPage = () => {
     const minMileage = params.get('minMileage') || '';
     const maxMileage = params.get('maxMileage') || '';
 
+    localStorage.setItem('lastSearch', location.search); // 🛠 записуємо lastSearch у localStorage
+    dispatch(setLastSearch(location.search)); // 🛠 записуємо останній рядок пошуку в store
     dispatch(setBrand(brand));
     dispatch(setPrice(price));
     dispatch(setMileageFrom(minMileage));
