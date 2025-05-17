@@ -3,6 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import DatePicker from 'react-datepicker';
 import toast from 'react-hot-toast';
+import { registerLocale } from 'react-datepicker';
+import enGB from 'date-fns/locale/en-GB';
+registerLocale('en-GB', enGB);
+import '../../styles/reactDatepickerOverrides.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './BookingForm.module.css';
 
@@ -85,6 +89,9 @@ const BookingForm = () => {
                   placeholderText="Booking date"
                   className={`${styles.input} ${styles.inputWithError}`}
                   calendarClassName={styles.calendar}
+                  minDate={new Date()}
+                  dateFormat="dd.MM.yyyy"
+                  locale="en-GB"
                 />
                 <ErrorMessage
                   name="date"
