@@ -1,11 +1,31 @@
+.headerWrapper {
+  position: relative;
+  z-index: 1;
+}
+
 .header {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 24px 120px;
-  border-bottom: 1px solid #f2f4f7;
   height: 68px;
+  max-width: 1440px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f4f7;
+}
+
+.headerWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
   background-color: #f2f4f7;
+  z-index: -1;
 }
 
 .logo {

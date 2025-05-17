@@ -1,10 +1,20 @@
 .hero {
+  position: relative;
+  height: 700px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
-  height: 700px;
-  text-align: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
   background-image: image-set(
     url('../../images/bg-home-1440.webp') 1x,
     url('../../images/bg-home-1440@2x.webp') 2x
@@ -12,6 +22,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  z-index: -1;
 }
 
 .content {
