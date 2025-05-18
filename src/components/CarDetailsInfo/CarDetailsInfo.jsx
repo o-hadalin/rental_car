@@ -2,7 +2,7 @@ import styles from './CarDetailsInfo.module.css';
 
 const CarDetailsInfo = ({ car }) => {
   const {
-    make,
+    brand,
     model,
     year,
     type,
@@ -31,7 +31,7 @@ const CarDetailsInfo = ({ car }) => {
       {/* Верхній блок */}
       <div className={styles.topBlock}>
         <p className={styles.carName}>
-          {make} {model}, {year}
+          {brand} {model}, {year}
           <span className={styles.carImageId}>Id: {imageId}</span>
         </p>
 

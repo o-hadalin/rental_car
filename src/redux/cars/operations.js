@@ -18,7 +18,7 @@ export const fetchCars = createAsyncThunk(
       };
 
       if (brand) params.brand = brand;
-      if (rentalPrice) params.rentalPrice = rentalPrice; // 🔶 Note: rentalPrice performs filtering on the backend, but the API returns all cars with price ≤ rentalPrice
+      if (rentalPrice) params.rentalPrice = rentalPrice;
       if (minMileage) params.minMileage = minMileage;
       if (maxMileage) params.maxMileage = maxMileage;
 

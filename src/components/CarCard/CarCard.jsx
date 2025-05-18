@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../../redux/favorites/slice';
 import { selectFavorites } from '../../redux/favorites/selectors';
+import LazyImage from '../LazyImage/LazyImage';
 import Icon from '../../components/Icon/Icon.jsx';
 import styles from './CarCard.module.css';
 import { Link } from 'react-router-dom';
@@ -9,7 +10,7 @@ const CarCard = ({ car }) => {
   const {
     id,
     img,
-    make,
+    brand,
     model,
     year,
     rentalPrice,
@@ -17,7 +18,6 @@ const CarCard = ({ car }) => {
     rentalCompany,
     type,
     mileage,
-    functionalities,
   } = car;
   const city = address?.split(', ')[1] || '';
   const country = address?.split(', ')[2] || '';
@@ -29,11 +29,16 @@ const CarCard = ({ car }) => {
   const handleToggle = () => {
     dispatch(toggleFavorite(id));
   };
+  const formattedType = type?.[0].toUpperCase() + type?.slice(1).toLowerCase();
 
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
-        <img className={styles.image} src={img} alt={`${make} ${model}`} />
+        <LazyImage
+          src={img}
+          alt={`${brand} ${model}`}
+          className={styles.image}
+        />
         <button
           className={styles.favoriteBtn}
           onClick={handleToggle}
@@ -44,17 +49,16 @@ const CarCard = ({ car }) => {
       </div>
       <div className={styles.topRow}>
         <h3 className={styles.title}>
-          {make} <span>{model}</span>, {year}
+          {brand} <span>{model}</span>, {year}
         </h3>
-        <p className={styles.price}>{rentalPrice}</p>
+        <p className={styles.price}>${rentalPrice}</p>
       </div>
       <ul className={styles.features}>
         <li>{city}</li>
         <li>{country}</li>
         <li>{rentalCompany}</li>
-        <li>{type}</li>
-        <li>{mileage.toLocaleString('en-US')} km</li>
-        <li>{functionalities?.[0]}</li>
+        <li>{formattedType}</li>
+        <li>{mileage.toLocaleString('uk-UA')} km</li>
       </ul>
       <Link to={`/catalog/${id}`} className={styles.detailsBtn}>
         Learn more

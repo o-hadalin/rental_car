@@ -13,7 +13,7 @@ import {
   setMileageFrom,
   setMileageTo,
 } from '../../redux/filters/slice';
-import { setLastSearch } from '../../redux/catalogState/slice'; // 🛠 правильний імпорт
+import { setLastSearch } from '../../redux/catalogState/slice';
 
 const CatalogPage = () => {
   const dispatch = useDispatch();

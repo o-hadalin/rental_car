@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Loader from '../../components/Loader/Loader';
 import axios from 'axios';
+import LazyImage from '../../components/LazyImage/LazyImage.jsx';
 import css from './DetailsPage.module.css';
 
 import BookingForm from '../../components/BookingForm/BookingForm.jsx';
@@ -42,12 +43,12 @@ const DetailsPage = () => {
   return (
     <main className={css.container}>
       <div className={css.leftColumn}>
-        <img
+        <LazyImage
           src={car.img}
-          alt={`${car.make} ${car.model}`}
+          alt={`${car.brand} ${car.model}`}
           className={css.carImage}
         />
-        <BookingForm carTitle={`${car.make} ${car.model}`} />
+        <BookingForm carTitle={`${car.brand} ${car.model}`} />
       </div>
 
       <div className={css.rightColumn}>

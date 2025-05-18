@@ -47,7 +47,9 @@ const LoadMoreButton = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <button onClick={handleClick}>Load more</button>
+        <button onClick={handleClick} className={styles.button}>
+          Load more
+        </button>
       )}
     </div>
   );

@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectLastSearch } from '../../redux/catalogState/selectors'; // 🛠 правильний шлях до селектора
+import { selectLastSearch } from '../../redux/catalogState/selectors';
 import styles from './Navigation.module.css';
 
 const Navigation = () => {
   const lastSearch = useSelector(selectLastSearch);
-  const catalogLink = lastSearch ? `/catalog${lastSearch}` : '/catalog'; // 🛠 без подвоєння `/catalog`
+  const catalogLink = lastSearch ? `/catalog${lastSearch}` : '/catalog';
 
   return (
     <nav className={styles.nav}>
