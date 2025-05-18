@@ -13,6 +13,7 @@ import {
   selectPrice,
   selectMileageFrom,
   selectMileageTo,
+  selectIsFiltered,
 } from '../../redux/filters/selectors';
 import { resetCars } from '../../redux/cars/slice';
 import { fetchCars } from '../../redux/cars/operations';
@@ -34,6 +35,7 @@ const Filters = () => {
   const [pricesList, setPricesList] = useState([]);
   const [initDone, setInitDone] = useState(false);
   const [autoFilterNeeded, setAutoFilterNeeded] = useState(false);
+  const isFiltered = useSelector(selectIsFiltered);
 
   useEffect(() => {
     axios
@@ -129,6 +131,17 @@ const Filters = () => {
     );
   };
 
+  const handleReset = () => {
+    dispatch(setBrand(''));
+    dispatch(setPrice(''));
+    dispatch(setMileageFrom(''));
+    dispatch(setMileageTo(''));
+    setSearchParams({});
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    dispatch(resetCars());
+    dispatch(fetchCars({ page: 1, limit: 12 }));
+  };
+
   return (
     <section className={styles.filters}>
       <div className={styles.filterItem}>
@@ -141,7 +154,6 @@ const Filters = () => {
           placeholder="Choose a brand"
         />
       </div>
-
       <div className={styles.filterItem}>
         <span className={styles.label}>Price / 1 hour</span>
         <CustomSelect
@@ -152,7 +164,6 @@ const Filters = () => {
           placeholder="Choose a price"
         />
       </div>
-
       <div className={styles.filterItem}>
         <span className={styles.label}>Car mileage / km</span>
         <div className={styles.mileageInputs}>
@@ -186,10 +197,14 @@ const Filters = () => {
           />
         </div>
       </div>
-
       <button className={styles.searchBtn} onClick={handleSearch}>
         Search
       </button>
+      {isFiltered && (
+        <button className={styles.resetBtn} onClick={handleReset} type="button">
+          Clear filters
+        </button>
+      )}
     </section>
   );
 };

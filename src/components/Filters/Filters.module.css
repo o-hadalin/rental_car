@@ -84,3 +84,19 @@
 .searchBtn:focus {
   background-color: #0b44cd;
 }
+
+.resetBtn {
+  background: transparent;
+  border: none;
+  color: #3470ff;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+  padding: 0;
+}
+
+.resetBtn:hover {
+  color: #0b44cd;
+}
