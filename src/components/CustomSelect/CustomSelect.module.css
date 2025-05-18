@@ -1,0 +1,116 @@
+.selectWrapper {
+  position: relative;
+  width: 204px;
+  font-size: 16px;
+  font-weight: 500;
+  user-select: none;
+}
+
+.display {
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  padding: 12px 36px 12px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #101828;
+  box-shadow: 0 4px 36px rgba(0, 0, 0, 0.02);
+  outline: none;
+  border: none;
+}
+
+.display:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.arrowIcon {
+  width: 16px;
+  height: 16px;
+  fill: #101828;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.optionsList {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.option {
+  padding: 10px 16px;
+  cursor: pointer;
+  color: #8d929a;
+  background-color: transparent !important;
+  user-select: none;
+}
+
+.option:hover,
+.option:focus {
+  background-color: #f0f0f0;
+  color: #101828;
+  outline: none;
+}
+
+.option:active {
+  background-color: transparent;
+}
+
+.selected {
+  color: #101828;
+  font-weight: 600;
+}
+
+/* Стилізований скрол */
+.optionsList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.optionsList::-webkit-scrollbar-track {
+  background: #f7f7f7;
+  border-radius: 12px;
+}
+
+.optionsList::-webkit-scrollbar-thumb {
+  background: #3470ff;
+  border-radius: 12px;
+}
+
+.optionsList::-webkit-scrollbar-thumb:hover {
+  background: #0b44cd;
+}
+
+.mileageInputs input {
+  width: 160px;
+  height: 44px;
+  padding-left: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  border: none;
+  border-radius: 12px;
+  appearance: textfield;
+  background-color: #f7f7f7;
+}
+
+.mileageInputs input::-webkit-inner-spin-button,
+.mileageInputs input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.mileageInputs input::placeholder {
+  color: #101828;
+}

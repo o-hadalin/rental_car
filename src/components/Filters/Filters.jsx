@@ -17,40 +17,9 @@ import {
 import { resetCars } from '../../redux/cars/slice';
 import { fetchCars } from '../../redux/cars/operations';
 import styles from './Filters.module.css';
+import CustomSelect from '../CustomSelect/CustomSelect';
 
 const LOCAL_STORAGE_KEY = 'rentalCarFilters';
-
-const CustomSelect = ({ value, onChange, options, placeholder, id }) => {
-  const getDisplayValue = () => {
-    if (!value) return placeholder;
-    return id === 'price' ? `To $${value}` : value;
-  };
-
-  return (
-    <div className={styles.selectWrapper}>
-      <select
-        id={id}
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        className={styles.select}
-      >
-        <option value="">{placeholder}</option>
-        {options.map(opt => (
-          <option key={opt} value={opt}>
-            {opt}
-          </option>
-        ))}
-      </select>
-
-      <div className={styles.customDisplay}>
-        {getDisplayValue()}
-        <svg className={styles.arrowIcon}>
-          <use href="/sprite.svg#arrow-down" />
-        </svg>
-      </div>
-    </div>
-  );
-};
 
 const Filters = () => {
   const dispatch = useDispatch();
@@ -163,7 +132,7 @@ const Filters = () => {
   return (
     <section className={styles.filters}>
       <div className={styles.filterItem}>
-        <label htmlFor="brand">Car brand</label>
+        <span className={styles.label}>Car brand</span>
         <CustomSelect
           id="brand"
           value={brand}
@@ -174,7 +143,7 @@ const Filters = () => {
       </div>
 
       <div className={styles.filterItem}>
-        <label htmlFor="price">Price / 1 hour</label>
+        <span className={styles.label}>Price / 1 hour</span>
         <CustomSelect
           id="price"
           value={price}
@@ -185,7 +154,7 @@ const Filters = () => {
       </div>
 
       <div className={styles.filterItem}>
-        <label htmlFor="mileageFrom">Car mileage / km</label>
+        <span className={styles.label}>Car mileage / km</span>
         <div className={styles.mileageInputs}>
           <input
             id="mileageFrom"
