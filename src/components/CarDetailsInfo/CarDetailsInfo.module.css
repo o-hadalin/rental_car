@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 488px;
   padding: 20px 16px;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 .topBlock {
@@ -36,15 +36,6 @@
   flex-direction: column;
   gap: 8px;
   margin-bottom: 16px;
-}
-
-.metaItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
-  font-size: 16px;
-  color: #101828;
 }
 
 .mileage {
@@ -97,7 +88,8 @@
   gap: 12px;
 }
 
-.listItem {
+.listItem,
+.metaItem {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -147,6 +139,6 @@
   }
 
   .bottomBlock {
-    height: 772px;
+    min-height: 772px;
   }
 }
