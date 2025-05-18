@@ -26,6 +26,7 @@ const CustomSelect = ({ value, onChange, options, placeholder, id }) => {
       displayValue = value;
     }
   }
+
   return (
     <div className={styles.selectWrapper} ref={ref}>
       <div
@@ -47,7 +48,7 @@ const CustomSelect = ({ value, onChange, options, placeholder, id }) => {
       >
         {displayValue}
         <svg className={styles.arrowIcon} aria-hidden="true">
-          <use href="/sprite.svg#arrow-down" />
+          <use href={`/sprite.svg#${open ? 'arrow-up' : 'arrow-down'}`} />
         </svg>
       </div>
 
