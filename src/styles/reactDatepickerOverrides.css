@@ -13,6 +13,9 @@
   max-width: 768px !important;
 }
 
+.react-datepicker__navigation {
+  overflow: visible;
+}
 .react-datepicker-wrapper {
   width: 100% !important;
 }
@@ -21,17 +24,59 @@
   background-color: transparent !important;
   border-bottom: none !important;
 }
-.react-datepicker__navigation {
-  top: 18px !important;
-  color: #3470ff !important;
+
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+  border: none !important;
+  background: none !important;
+  width: 24px !important;
+  height: 24px !important;
+  padding: 0 !important;
+  cursor: pointer;
+  position: absolute !important;
+  top: 26px !important;
+  fill: #3470ff;
+  color: #3470ff;
+  filter: invert(33%) sepia(91%) saturate(2632%) hue-rotate(207deg)
+    brightness(96%) contrast(94%);
 }
 
-.react-datepicker__current-month {
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  color: #101828 !important;
-  margin-bottom: 12px !important;
-  text-align: center !important;
+.react-datepicker__navigation--previous {
+  left: 30px !important;
+}
+
+.react-datepicker__navigation--next {
+  right: 30px !important;
+}
+
+/* Вставляємо SVG іконки через inline SVG через background-image */
+.react-datepicker__navigation--previous::before,
+.react-datepicker__navigation--next::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Стрілки із спрайту */
+.react-datepicker__navigation--previous::before {
+  background-image: url('/sprite.svg#arrow-left');
+}
+
+.react-datepicker__navigation--next::before {
+  background-image: url('/sprite.svg#arrow-right');
+}
+
+/* Лінія під днями тижня */
+.react-datepicker__day-names {
+  border-bottom: 1px solid #3470ff !important;
+  margin-bottom: 8px !important;
+  padding: 0 12px 4px 12px !important;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .react-datepicker__day-name {
@@ -39,8 +84,42 @@
   height: 14px !important;
   font-size: 12px !important;
   font-weight: 600 !important;
-  color: #8d929a !important;
+  color: transparent !important;
   text-align: center !important;
+  text-transform: uppercase !important;
+  font-family: inherit !important;
+  position: relative;
+}
+
+/* Кастомні назви днів */
+.react-datepicker__day-name:nth-child(1)::after {
+  content: 'MON';
+}
+.react-datepicker__day-name:nth-child(2)::after {
+  content: 'TUE';
+}
+.react-datepicker__day-name:nth-child(3)::after {
+  content: 'WED';
+}
+.react-datepicker__day-name:nth-child(4)::after {
+  content: 'THU';
+}
+.react-datepicker__day-name:nth-child(5)::after {
+  content: 'FRI';
+}
+.react-datepicker__day-name:nth-child(6)::after {
+  content: 'SAT';
+}
+.react-datepicker__day-name:nth-child(7)::after {
+  content: 'SUN';
+}
+
+.react-datepicker__day-name::after {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #8d929a !important;
 }
 
 .react-datepicker__day {
@@ -66,4 +145,12 @@
 .react-datepicker__day--selected {
   background-color: #0b44cd !important;
   color: #fff !important;
+}
+
+.react-datepicker__current-month {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #101828 !important;
+  margin-bottom: 12px !important;
+  text-align: center !important;
 }
