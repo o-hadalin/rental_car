@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 120px;
+  padding: 24px 40px;
   height: 68px;
   max-width: 1440px;
   margin: 0 auto;
@@ -34,4 +34,16 @@
   font-size: 24px;
   display: flex;
   align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 24px 80px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
+    padding: 24px 120px;
+  }
 }

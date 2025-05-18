@@ -7,6 +7,16 @@
   font-family: inherit !important;
 }
 
+.react-datepicker__input-container input {
+  width: 100% !important;
+  box-sizing: border-box;
+  max-width: 768px !important;
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+
 .react-datepicker__header {
   background-color: transparent !important;
   border-bottom: none !important;

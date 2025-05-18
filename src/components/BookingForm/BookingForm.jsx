@@ -60,7 +60,6 @@ const BookingForm = () => {
                   className={styles.errorInline}
                 />
               </div>
-
               <div className={styles.fieldWrapper}>
                 <Field
                   id="email"
@@ -75,8 +74,9 @@ const BookingForm = () => {
                   className={styles.errorInline}
                 />
               </div>
-
-              <div className={styles.fieldWrapper}>
+              <div
+                className={`${styles.fieldWrapper} ${styles.datePickerWrapper}`}
+              >
                 <DatePicker
                   id="bookingDate"
                   name="date"
@@ -88,7 +88,7 @@ const BookingForm = () => {
                   }}
                   placeholderText="Booking date"
                   className={`${styles.input} ${styles.inputWithError}`}
-                  calendarClassName={styles.calendar}
+                  calendarClassName="calendar"
                   minDate={new Date()}
                   dateFormat="dd.MM.yyyy"
                   locale="en-GB"
@@ -99,7 +99,6 @@ const BookingForm = () => {
                   className={styles.errorInline}
                 />
               </div>
-
               <Field
                 as="textarea"
                 id="comment"

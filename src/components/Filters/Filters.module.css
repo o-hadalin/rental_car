@@ -2,8 +2,22 @@
   display: flex;
   align-items: flex-end;
   gap: 16px;
-  padding: 0 120px;
+  padding: 0 16px;
   margin-top: 76px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .filters {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .filters {
+    padding: 0 120px;
+  }
 }
 
 .filterItem {
@@ -33,6 +47,7 @@
 .select option:checked {
   color: #101828;
 }
+
 .select {
   width: 100%;
   height: 100%;
@@ -54,6 +69,11 @@
 
 .select:focus {
   outline: none;
+}
+
+.select:focus + .customDisplay .arrowIcon {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
 }
 
 .customDisplay {
@@ -80,6 +100,7 @@
   height: 16px;
   fill: #101828;
   pointer-events: none;
+  transition: transform 0.3s ease;
 }
 
 .mileageInputs {
