@@ -6,7 +6,6 @@
 
 .button {
   padding: 12px 38px;
-  /* width: 156px; */
   height: 44px;
   background-color: #ffffff;
   border: 1px solid #3470ff;
@@ -24,7 +23,6 @@
 
 .button:hover,
 .button:focus {
-  /* background-color: #3470ff; */
   color: #3470ff;
   border: 1px solid #0b44cd;
   outline: none;

@@ -95,7 +95,8 @@
   margin-top: 24px;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   background: #0b44cd;
 }
 

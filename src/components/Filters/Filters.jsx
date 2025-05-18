@@ -20,6 +20,38 @@ import styles from './Filters.module.css';
 
 const LOCAL_STORAGE_KEY = 'rentalCarFilters';
 
+const CustomSelect = ({ value, onChange, options, placeholder, id }) => {
+  const getDisplayValue = () => {
+    if (!value) return placeholder;
+    return id === 'price' ? `To $${value}` : value;
+  };
+
+  return (
+    <div className={styles.selectWrapper}>
+      <select
+        id={id}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        className={styles.select}
+      >
+        <option value="">{placeholder}</option>
+        {options.map(opt => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+
+      <div className={styles.customDisplay}>
+        {getDisplayValue()}
+        <svg className={styles.arrowIcon}>
+          <use href="/sprite.svg#arrow-down" />
+        </svg>
+      </div>
+    </div>
+  );
+};
+
 const Filters = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,32 +63,24 @@ const Filters = () => {
 
   const [brandsList, setBrandsList] = useState([]);
   const [pricesList, setPricesList] = useState([]);
-  const [initDone, setInitDone] = useState(false); // щоб не запускати fetchCars раніше часу
+  const [initDone, setInitDone] = useState(false);
   const [autoFilterNeeded, setAutoFilterNeeded] = useState(false);
 
-  // Завантаження брендів
   useEffect(() => {
     axios
       .get('/brands')
       .then(res => setBrandsList(res.data))
       .catch(console.error);
-  }, []);
-
-  // Завантаження унікальних цін
-  useEffect(() => {
     axios
       .get('/cars', { params: { limit: 100, page: 1 } })
       .then(res => {
-        const prices = res.data.cars.map(car => car.rentalPrice);
-        const unique = Array.from(new Set(prices)).sort(
-          (a, b) => Number(a) - Number(b)
-        );
+        const prices = res.data.cars.map(car => Number(car.rentalPrice));
+        const unique = Array.from(new Set(prices)).sort((a, b) => a - b);
         setPricesList(unique);
       })
       .catch(console.error);
   }, []);
 
-  // Відновлення фільтрів з URL або localStorage при старті
   useEffect(() => {
     const paramsBrand = searchParams.get('brand') || '';
     const paramsPrice = searchParams.get('price') || '';
@@ -70,7 +94,6 @@ const Filters = () => {
       dispatch(setMileageFrom(paramsMileageFrom));
       dispatch(setMileageTo(paramsMileageTo));
     } else {
-      // Якщо в URL немає — пробуємо localStorage
       const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (saved) {
         try {
@@ -87,7 +110,6 @@ const Filters = () => {
     setInitDone(true);
   }, [dispatch, searchParams]);
 
-  // Після відновлення фільтрів запускаємо пошук автоматично разово
   useEffect(() => {
     if (!initDone || !autoFilterNeeded) return;
     dispatch(resetCars());
@@ -113,28 +135,19 @@ const Filters = () => {
   ]);
 
   const handleSearch = () => {
-    // Оновлюємо URL
     const newParams = {};
     if (brand) newParams.brand = brand;
     if (price) newParams.price = price;
     if (mileageFrom) newParams.minMileage = mileageFrom;
     if (mileageTo) newParams.maxMileage = mileageTo;
+
     setSearchParams(newParams);
     setAutoFilterNeeded(false);
-
-    // Зберігаємо в localStorage
     localStorage.setItem(
       LOCAL_STORAGE_KEY,
-      JSON.stringify({
-        brand,
-        price,
-        mileageFrom,
-        mileageTo,
-      })
+      JSON.stringify({ brand, price, mileageFrom, mileageTo })
     );
-
     dispatch(resetCars());
-    // 🔶 Note: rentalPrice performs filtering on the backend, but the API returns all cars with price ≤ rentalPrice
     dispatch(
       fetchCars({
         page: 1,
@@ -151,34 +164,26 @@ const Filters = () => {
     <section className={styles.filters}>
       <div className={styles.filterItem}>
         <label htmlFor="brand">Car brand</label>
-        <select
+        <CustomSelect
           id="brand"
           value={brand}
-          onChange={e => dispatch(setBrand(e.target.value))}
-        >
-          <option value="">Choose a brand</option>
-          {brandsList.map(b => (
-            <option key={b} value={b}>
-              {b}
-            </option>
-          ))}
-        </select>
+          onChange={value => dispatch(setBrand(value))}
+          options={brandsList}
+          placeholder="Choose a brand"
+        />
       </div>
+
       <div className={styles.filterItem}>
         <label htmlFor="price">Price / 1 hour</label>
-        <select
+        <CustomSelect
           id="price"
           value={price}
-          onChange={e => dispatch(setPrice(e.target.value))}
-        >
-          <option value="">Choose a price</option>
-          {pricesList.map(p => (
-            <option key={p} value={p}>
-              ${p}
-            </option>
-          ))}
-        </select>
+          onChange={value => dispatch(setPrice(value))}
+          options={pricesList}
+          placeholder="Choose a price"
+        />
       </div>
+
       <div className={styles.filterItem}>
         <label htmlFor="mileageFrom">Car mileage / km</label>
         <div className={styles.mileageInputs}>
@@ -186,20 +191,33 @@ const Filters = () => {
             id="mileageFrom"
             name="mileageFrom"
             type="number"
+            min="0"
             placeholder="From"
             value={mileageFrom}
-            onChange={e => dispatch(setMileageFrom(e.target.value))}
+            onChange={e => {
+              const value = e.target.value;
+              if (Number(value) >= 0 || value === '') {
+                dispatch(setMileageFrom(value));
+              }
+            }}
           />
           <input
             id="mileageTo"
             name="mileageTo"
             type="number"
+            min="0"
             placeholder="To"
             value={mileageTo}
-            onChange={e => dispatch(setMileageTo(e.target.value))}
+            onChange={e => {
+              const value = e.target.value;
+              if (Number(value) >= 0 || value === '') {
+                dispatch(setMileageTo(value));
+              }
+            }}
           />
         </div>
       </div>
+
       <button className={styles.searchBtn} onClick={handleSearch}>
         Search
       </button>

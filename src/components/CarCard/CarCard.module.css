@@ -105,6 +105,7 @@
   display: block;
 }
 
-.detailsBtn:hover {
+.detailsBtn:hover,
+.detailsBtn:focus {
   background: #0b44cd;
 }

@@ -61,7 +61,7 @@ const CarCard = ({ car }) => {
         <li>{mileage.toLocaleString('uk-UA')} km</li>
       </ul>
       <Link to={`/catalog/${id}`} className={styles.detailsBtn}>
-        Learn more
+        Read more
       </Link>
     </div>
   );
