@@ -52,6 +52,9 @@
   line-height: 1.25;
   color: #121417;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title span {

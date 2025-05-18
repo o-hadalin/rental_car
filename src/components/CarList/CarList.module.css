@@ -7,3 +7,10 @@
   align-items: flex-start;
   justify-content: center;
 }
+
+.emptyMessage {
+  text-align: center;
+  font-size: 18px;
+  color: #8d929a;
+  margin: 40px 0;
+}
