@@ -24,7 +24,6 @@ const CatalogPage = () => {
     const minMileage = params.get('minMileage') || '';
     const maxMileage = params.get('maxMileage') || '';
 
-    localStorage.setItem('lastSearch', location.search);
     dispatch(setLastSearch(location.search));
     dispatch(setBrand(brand));
     dispatch(setPrice(price));

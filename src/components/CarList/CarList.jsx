@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCars } from '../../redux/cars/operations';
 import { resetCars } from '../../redux/cars/slice';
@@ -18,14 +18,23 @@ const CarList = () => {
   const cars = useSelector(selectCars);
   const isLoading = useSelector(selectIsLoading);
 
-  // Витягуємо фільтри з редакса, щоб передати їх в запит
   const brand = useSelector(selectBrand);
   const rentalPrice = useSelector(selectPrice);
   const minMileage = useSelector(selectMileageFrom);
   const maxMileage = useSelector(selectMileageTo);
 
+  const [initDone, setInitDone] = useState(false);
+
   useEffect(() => {
-    console.log({ brand, rentalPrice, minMileage, maxMileage });
+    const timeout = setTimeout(() => {
+      setInitDone(true);
+    }, 0);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    if (!initDone) return;
+
     dispatch(resetCars());
     dispatch(
       fetchCars({
@@ -37,10 +46,9 @@ const CarList = () => {
         maxMileage,
       })
     );
-  }, [dispatch, brand, rentalPrice, minMileage, maxMileage]);
+  }, [dispatch, brand, rentalPrice, minMileage, maxMileage, initDone]);
 
   if (isLoading && cars.length === 0) {
-    // Показати спінер лише при початковому завантаженні (коли ще немає машин)
     return <div className={styles.spinner} />;
   }
 
