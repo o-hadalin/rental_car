@@ -12,6 +12,8 @@ import {
   setMileageTo,
 } from '../../redux/filters/slice';
 import { setLastSearch } from '../../redux/catalogState/slice';
+import { resetCars } from '../../redux/cars/slice';
+import { fetchCars } from '../../redux/cars/operations';
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -29,6 +31,20 @@ const CatalogPage = () => {
     dispatch(setPrice(price));
     dispatch(setMileageFrom(minMileage));
     dispatch(setMileageTo(maxMileage));
+
+    setTimeout(() => {
+      dispatch(resetCars());
+      dispatch(
+        fetchCars({
+          page: 1,
+          limit: 12,
+          brand,
+          rentalPrice: price,
+          minMileage,
+          maxMileage,
+        })
+      );
+    }, 0); // 🔧 затримка в один event loop
   }, [dispatch, location.search]);
 
   return (
