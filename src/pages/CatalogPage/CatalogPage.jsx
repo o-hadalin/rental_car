@@ -20,6 +20,21 @@ const CatalogPage = () => {
   const location = useLocation();
 
   useEffect(() => {
+    if (!location.search) {
+      const saved = localStorage.getItem('rentalCarFilters');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const params = new URLSearchParams();
+        if (parsed.brand) params.set('brand', parsed.brand);
+        if (parsed.price) params.set('price', parsed.price);
+        if (parsed.mileageFrom) params.set('minMileage', parsed.mileageFrom);
+        if (parsed.mileageTo) params.set('maxMileage', parsed.mileageTo);
+        window.history.replaceState(null, '', `/catalog?${params.toString()}`);
+      }
+    }
+  }, [location.search]);
+
+  useEffect(() => {
     const params = new URLSearchParams(location.search);
     const brand = params.get('brand') || '';
     const price = params.get('price') || '';

@@ -154,6 +154,7 @@ const Filters = () => {
     dispatch(setPrice(price));
     dispatch(setMileageFrom(mileageFrom));
     dispatch(setMileageTo(mileageTo));
+    dispatch(setLastSearch(new URLSearchParams(newParams).toString()));
 
     dispatch(resetCars());
     dispatch(
@@ -174,7 +175,6 @@ const Filters = () => {
     setPriceLocal('');
     setMileageFromLocal('');
     setMileageToLocal('');
-    setLastSearch('');
     setSearchParams({});
     localStorage.removeItem(LOCAL_STORAGE_KEY);
 
@@ -182,7 +182,7 @@ const Filters = () => {
     dispatch(setPrice(''));
     dispatch(setMileageFrom(''));
     dispatch(setMileageTo(''));
-
+    dispatch(setLastSearch(''));
     dispatch(resetCars());
     dispatch(fetchCars({ page: 1, limit: 12 }));
   };
