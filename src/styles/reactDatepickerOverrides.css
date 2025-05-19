@@ -52,20 +52,20 @@
 /* Вставляємо SVG іконки через inline SVG через background-image */
 .react-datepicker__navigation--previous::before,
 .react-datepicker__navigation--next::before {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 24px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  content: '' !important;
+  display: block !important;
+  width: 24px !important;
+  height: 24px !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
 }
 .react-datepicker__navigation-icon--next {
-  left: -7px;
+  left: -7px !important;
 }
 
 .react-datepicker__navigation-icon--previous:before {
-  right: 15px;
+  right: 15px !important;
 }
 
 /* Стрілки із спрайту */
