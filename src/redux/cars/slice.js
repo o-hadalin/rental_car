@@ -49,5 +49,5 @@ const carsSlice = createSlice({
   },
 });
 
-export const { resetCars, incrementPage } = carsSlice.actions;
+export const { resetCars } = carsSlice.actions;
 export default carsSlice.reducer;

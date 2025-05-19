@@ -5,8 +5,6 @@ import styles from './CatalogPage.module.css';
 import Filters from '../../components/Filters/Filters.jsx';
 import CarList from '../../components/CarList/CarList.jsx';
 import LoadMoreButton from '../../components/LoadMoreButton/LoadMoreButton.jsx';
-import { fetchCars } from '../../redux/cars/operations';
-import { resetCars } from '../../redux/cars/slice';
 import {
   setBrand,
   setPrice,
@@ -26,24 +24,12 @@ const CatalogPage = () => {
     const minMileage = params.get('minMileage') || '';
     const maxMileage = params.get('maxMileage') || '';
 
-    localStorage.setItem('lastSearch', location.search); // 🛠 записуємо lastSearch у localStorage
-    dispatch(setLastSearch(location.search)); // 🛠 записуємо останній рядок пошуку в store
+    localStorage.setItem('lastSearch', location.search);
+    dispatch(setLastSearch(location.search));
     dispatch(setBrand(brand));
     dispatch(setPrice(price));
     dispatch(setMileageFrom(minMileage));
     dispatch(setMileageTo(maxMileage));
-
-    dispatch(resetCars());
-    dispatch(
-      fetchCars({
-        page: 1,
-        limit: 12,
-        brand,
-        rentalPrice: price,
-        minMileage,
-        maxMileage,
-      })
-    );
   }, [dispatch, location.search]);
 
   return (
