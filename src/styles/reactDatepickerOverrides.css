@@ -14,7 +14,7 @@
 }
 
 .react-datepicker__navigation {
-  overflow: visible;
+  overflow: hiden;
 }
 .react-datepicker-wrapper {
   width: 100% !important;
@@ -59,6 +59,13 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+.react-datepicker__navigation-icon--next {
+  left: -7px;
+}
+
+.react-datepicker__navigation-icon--previous:before {
+  right: 15px;
 }
 
 /* Стрілки із спрайту */
