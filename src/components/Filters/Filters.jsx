@@ -16,6 +16,7 @@ import {
 import { selectIsFiltered } from '../../redux/filters/selectors';
 import { resetCars } from '../../redux/cars/slice';
 import { fetchCars } from '../../redux/cars/operations';
+import { setLastSearch } from '../../redux/catalogState/slice';
 import styles from './Filters.module.css';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import axios from 'axios';
@@ -173,6 +174,7 @@ const Filters = () => {
     setPriceLocal('');
     setMileageFromLocal('');
     setMileageToLocal('');
+    setLastSearch('');
     setSearchParams({});
     localStorage.removeItem(LOCAL_STORAGE_KEY);
 
